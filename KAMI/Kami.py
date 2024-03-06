@@ -1,11 +1,11 @@
 def Check(n):
-    for i in range(n):
-        if (i+1)%3 == 0:
+    for i in range(1, n+1):
+        if (i)%3 == 0:
             print("(」・ω・)」うー!",end='')
-        if (i+1)%5 == 0:
+        if (i)%5 == 0:
             print("(/・ω・)/にゃー!",end='')
-        if (i+1)%3 != 0 and (i+1)%5 != 0:
-            print(i+1,end='')
+        if (i)%3 != 0 and (i)%5 != 0:
+            print(i,end='')
         print("")
 
 while (1):
@@ -18,5 +18,5 @@ while (1):
         else:
             print("輸入不是整數，請重新輸入")
     except:
-        print("輸入不是整數，請重新輸入")
+        print("輸入不是數字，請重新輸入")
     
