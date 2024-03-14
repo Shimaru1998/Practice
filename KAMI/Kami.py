@@ -8,7 +8,7 @@ def Check(n):
             print(i,end='')
         print("")
 
-while (1):
+while (True):
     Temp = input("輸入數字 n = ")
     try:
         Num = float(Temp)
