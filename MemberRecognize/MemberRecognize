@@ -1,0 +1,49 @@
+import os
+
+def get_CheckFileList() -> list:
+    fileDir = (os.getcwd()+"\BandMemberList")
+    fileExt = r".txt"
+    CheckFileList = [_ for _ in os.listdir(fileDir) if _.endswith(fileExt)]
+    #print(CheckFileList)
+    return CheckFileList
+
+def get_MemberList(filename):
+    Members =[]
+    with open('./BandMemberList/'+filename,mode='r') as file:
+        for line in file.readlines():
+            Members.append(line.strip()) 
+    return filename.replace('.txt', ''), Members
+        
+def create_CheckList(FileList: list): #輸出為兩個List
+    BandList = []
+    MemberList = []
+    for filename in FileList:
+        a, b = get_MemberList(filename)
+        BandList.append(a)
+        MemberList.append(b)
+    return BandList, MemberList
+
+def recognize_band(name:str, MemberList:list) -> int: #認出名字是在第幾串MemberList，並回傳index，皆無則回傳-1
+    for i in range(len(MemberList)):
+        if name in MemberList[i]:
+            return i
+    return -1
+
+
+if __name__=="__main__":
+    CheckFile = get_CheckFileList()
+    BandList, MemberList = create_CheckList(CheckFile)
+    out_file = open("Output.txt", mode="w")
+
+    with open("NameList.txt",mode="r") as in_file:
+        for i in in_file.readlines():
+            index = recognize_band(i.strip(),MemberList)
+            if index == -1:
+                out_file.write(i.strip() + " (N/A)\n")
+            else:
+                out_file.write(i.strip() + " (" + BandList[index]+")\n")
+    
+    out_file.close()
+    
+
+
